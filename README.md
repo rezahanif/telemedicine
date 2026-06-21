@@ -105,36 +105,7 @@ node src/index.js
 
 ## 🤖 Interaction Flow (State Machine)
 
-```mermaid
-stateDiagram-v2
-    [*] --> START
-    START --> AWAITING_MENU : User sends greeting ("Halo", "Hai")
-    
-    state AWAITING_MENU {
-        [*] --> SelectOption
-        SelectOption --> AWAITING_KELUHAN : Options = 1 (Konsultasi)
-        SelectOption --> EXIT_STATE : Options = 2 (Keluar)
-        SelectOption --> SelectOption : Invalid input (shows error)
-    }
-
-    AWAITING_KELUHAN --> AWAITING_GEJALA_CHOICE : Valid complaint matched (RAG)
-    AWAITING_KELUHAN --> REFER_DOCTOR : TIDAK_COCOK / Unknown complaint
-
-    state AWAITING_GEJALA_CHOICE {
-        [*] --> ChooseSymptom
-        ChooseSymptom --> AWAITING_GEJALA : Option = 0 (Lain-lain)
-        ChooseSymptom --> GEJALA_ANALYSIS : Valid number selected
-        ChooseSymptom --> ChooseSymptom : Invalid selection
-    }
-
-    AWAITING_GEJALA --> GEJALA_ANALYSIS : User enters details
-    
-    GEJALA_ANALYSIS --> START : Success (Displays RAG Diagnosis & ends session)
-    GEJALA_ANALYSIS --> AWAITING_KELUHAN : Failure / TIDAK_COCOK
-    
-    REFER_DOCTOR --> START : Ends session
-    EXIT_STATE --> START : Ends session
-```
+https://www.figma.com/board/9B8RDxhxfyJvtOylqpbuBa/WhatsApp-Medical-Bot-RAG-Flow?node-id=0-1&t=DgtAN0mBxqQjz9qt-1
 
 ---
 
